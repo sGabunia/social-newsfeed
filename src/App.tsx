@@ -1,11 +1,5 @@
-
-
 function App() {
-  return (
-    <div>
-      News Feed
-    </div>
-  )
+  return <div>News Feed</div>;
 }
 
-export default App
+export default App;
