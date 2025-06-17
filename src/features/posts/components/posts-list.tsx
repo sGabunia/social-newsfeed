@@ -28,7 +28,7 @@ export const PostsList = () => {
           <p>Name: {post.AuthorFirstName}</p>
           <p>Content: {post.Content}</p>
           <div>
-            <DeletePost postId={post.PostID} />
+            <DeletePost postId={post.PostID} authorId={post.AuthorID} />
           </div>
         </div>
       ))}

@@ -27,3 +27,10 @@ export type Reactions = {
   SAD: number;
   WOW: number;
 };
+
+export type User = {
+  UserID: number;
+  FirstName: string;
+  LastName: string;
+  AvatarUrl: string;
+};

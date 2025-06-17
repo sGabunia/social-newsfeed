@@ -1,6 +1,7 @@
+import { Authorization } from '@/lib/authorization';
 import { useDeletePost } from '../api/delete-post';
 
-export const DeletePost = ({ postId }: { postId: number }) => {
+export const DeletePost = ({ postId, authorId }: { postId: number; authorId: number }) => {
   const deletePostMutation = useDeletePost({
     mutationConfig: {
       onSuccess: () => {
@@ -9,16 +10,18 @@ export const DeletePost = ({ postId }: { postId: number }) => {
     }
   });
   return (
-    <div>
-      <p>Delete Post</p>
-      <button
-        disabled={deletePostMutation.isPending}
-        onClick={() => {
-          deletePostMutation.mutate(postId);
-        }}
-      >
-        {deletePostMutation.isPending ? 'Deleting...' : 'Delete Post'}
-      </button>
-    </div>
+    <Authorization postAuthorId={authorId}>
+      <div>
+        <p>Delete Post</p>
+        <button
+          disabled={deletePostMutation.isPending}
+          onClick={() => {
+            deletePostMutation.mutate(postId);
+          }}
+        >
+          {deletePostMutation.isPending ? 'Deleting...' : 'Delete Post'}
+        </button>
+      </div>
+    </Authorization>
   );
 };
