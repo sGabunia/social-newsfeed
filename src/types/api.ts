@@ -34,3 +34,21 @@ export type User = {
   LastName: string;
   AvatarUrl: string;
 };
+
+export type Comment = {
+  CommentID: number;
+  ParentCommentID: any;
+  PostID: number;
+  AuthorID: number;
+  AuthorFirstName: string;
+  AuthorLastName: string;
+  AuthorAvatar: string;
+  Content: string;
+  IsAuthor: boolean;
+  TotalReactions: number;
+  TotalReplies: number;
+  UserReaction: number;
+  CreateTime: string;
+  Reactions: Reactions;
+  Comments: Comment[];
+};

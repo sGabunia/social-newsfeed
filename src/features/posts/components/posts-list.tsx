@@ -1,3 +1,4 @@
+import { Comments } from '@/features/comments/components/comments';
 import { usePosts } from '../api/get-posts';
 import { DeletePost } from './delete-post';
 
@@ -29,6 +30,9 @@ export const PostsList = () => {
           <p>Content: {post.Content}</p>
           <div>
             <DeletePost postId={post.PostID} authorId={post.AuthorID} />
+          </div>
+          <div>
+            <Comments postId={post.PostID} />
           </div>
         </div>
       ))}
