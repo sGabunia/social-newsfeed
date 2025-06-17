@@ -1,5 +1,4 @@
-import { useCreatePost } from "../api/create-post";
-
+import { useCreatePost } from '../api/create-post';
 
 export const CreatePost = () => {
   const createPostMutation = useCreatePost({
@@ -11,7 +10,7 @@ export const CreatePost = () => {
         console.error('Error creating post:', error);
       }
     }
-  })
+  });
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Temporarily use without `useForm` for simplicity
@@ -27,8 +26,8 @@ export const CreatePost = () => {
     }
 
     createPostMutation.mutate({
-      Content: content 
-    })
+      Content: content
+    });
 
     form.reset();
   };
@@ -38,12 +37,10 @@ export const CreatePost = () => {
       <h1>Create Post</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor='post-content'>Content:</label>
-        <input
-          type='text'
-          name="content"
-          placeholder='Enter post content'
-        />
-        <button type='submit'>{createPostMutation.isPending ? 'Loading...' : 'Create Post'}</button>
+        <input type='text' name='content' placeholder='Enter post content' />
+        <button disabled={createPostMutation.isPending} type='submit'>
+          {createPostMutation.isPending ? 'Loading...' : 'Create Post'}
+        </button>
       </form>
     </div>
   );
