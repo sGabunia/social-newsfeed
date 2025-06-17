@@ -19,9 +19,10 @@ export const PostsList = () => {
     <div>
       <h1>Posts</h1>
       {posts.map((post) => (
-        <div key={post.PostID}>
+        <div key={post.PostID} style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
           <p>Lastname: {post.AuthorLastName}</p>
           <p>Name: {post.AuthorFirstName}</p>
+          <p>Content: {post.Content}</p>
         </div>
       ))}
     </div>
