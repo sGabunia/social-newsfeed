@@ -1,0 +1,9 @@
+.root {
+  --container-size: 960px;
+  --spacing-md: 16px;
+
+
+  max-width: var(--container-size);
+  padding-inline: var(--spacing-md);
+  margin-inline: auto;
+}

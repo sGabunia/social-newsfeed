@@ -1,5 +1,7 @@
+import { ContentLayout } from '@/components/layout';
+
 function App() {
-  return <div>News Feed</div>;
+  return <ContentLayout>News Feed</ContentLayout>;
 }
 
 export default App;
