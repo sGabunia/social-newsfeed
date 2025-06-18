@@ -1,5 +1,6 @@
+
 import { useComments } from '../api/get-comments';
-import { DeleteComment } from './delete-comment';
+import { CommentView } from './comment';
 
 type CommentsListProps = {
   postId: number;
@@ -24,42 +25,13 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
   return (
     <div>
       <h3>Comments:</h3>
-      {comments.map((comment) => (
-        <div
-          key={comment.CommentID}
-          style={{ marginBottom: '10px', border: '1px solid blue', padding: '5px' }}
-        >
-          <p>
-            <strong>
-              {comment.AuthorFirstName} {comment.AuthorLastName}
-            </strong>
-          </p>
-          <p>{comment.Content}</p>
-          {comment.Comments.length > 0 && <h4>Replies:</h4>}
-          {comment.Comments.map((reply) => {
-            return (
-              <div
-                key={reply.CommentID}
-                style={{ marginLeft: '20px', border: '1px solid green', padding: '5px' }}
-              >
-                <p>
-                  <strong>
-                    {reply.AuthorFirstName} {reply.AuthorLastName}
-                  </strong>
-                </p>
-                <p>{reply.Content}</p>
-              </div>
-            );
-          })}
-          <div>
-            <DeleteComment
-              commentId={comment.CommentID}
-              authorId={comment.AuthorID}
-              postId={comment.PostID}
-            />
+      {comments.map((comment) => {
+        return (
+          <div key={comment.CommentID} style={{ marginLeft: '20px' }}>
+            <CommentView comment={comment} />
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
