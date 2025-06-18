@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CommentsList } from './comments-list';
 import { CreateComment } from './create-comment';
 
@@ -6,10 +7,18 @@ type CommentsProps = {
 };
 
 export const Comments = ({ postId }: CommentsProps) => {
+  const [showComments, setShowComments] = useState(false);
   return (
     <div>
-      <CommentsList postId={postId} />
-      <CreateComment postId={postId} />
+      <button onClick={() => setShowComments((prev) => !prev)}>
+        {showComments ? 'Hide Comments' : 'Show Comments'}
+      </button>
+      {showComments && (
+        <>
+          <CommentsList postId={postId} />
+          <CreateComment postId={postId} />
+        </>
+      )}
     </div>
   );
 };

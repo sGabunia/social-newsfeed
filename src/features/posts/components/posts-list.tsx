@@ -25,19 +25,23 @@ export const PostsList = () => {
           key={post.PostID}
           style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}
         >
-          <p>Lastname: {post.AuthorLastName}</p>
-          <p>Name: {post.AuthorFirstName}</p>
-          <p>Content: {post.Content}</p>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            {post.TotalReactions > 0 ? (
-              <p>
-                Likes: {post.LastReactionAuthor} and {post.TotalReactions - 1} others
-              </p>
-            ) : null}
-            {post.TotalReactions > 0 ? <p>Comments: {post.TotalComments}</p> : null}
-          </div>
-          <div>
-            <DeletePost postId={post.PostID} authorId={post.AuthorID} />
+            <div>
+              <p>Lastname: {post.AuthorLastName}</p>
+              <p>Name: {post.AuthorFirstName}</p>
+              <p>Content: {post.Content}</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                {post.TotalReactions > 0 ? (
+                  <p>
+                    Likes: {post.LastReactionAuthor} and {post.TotalReactions - 1} others
+                  </p>
+                ) : null}
+                {post.TotalReactions > 0 ? <p>Comments: {post.TotalComments}</p> : null}
+              </div>
+            </div>
+            <div>
+              <DeletePost postId={post.PostID} authorId={post.AuthorID} />
+            </div>
           </div>
           <div>
             <Comments postId={post.PostID} />

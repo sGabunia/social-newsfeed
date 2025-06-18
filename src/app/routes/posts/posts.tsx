@@ -10,6 +10,10 @@ const Posts = () => {
     return <div>Initial Loading...</div>;
   }
 
+  if (user.error) {
+    return <div>Something went wrong</div>;
+  }
+
   if (!user.data) {
     return null;
   }

@@ -11,17 +11,14 @@ export const DeletePost = ({ postId, authorId }: { postId: number; authorId: num
   });
   return (
     <Authorization authorId={authorId}>
-      <div>
-        <p>Delete Post</p>
-        <button
-          disabled={deletePostMutation.isPending}
-          onClick={() => {
-            deletePostMutation.mutate(postId);
-          }}
-        >
-          {deletePostMutation.isPending ? 'Deleting...' : 'Delete Post'}
-        </button>
-      </div>
+      <button
+        disabled={deletePostMutation.isPending}
+        onClick={() => {
+          deletePostMutation.mutate(postId);
+        }}
+      >
+        {deletePostMutation.isPending ? 'Deleting...' : 'Delete Post'}
+      </button>
     </Authorization>
   );
 };
