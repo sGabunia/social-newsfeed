@@ -2,6 +2,7 @@ import { Comments } from '@/features/comments/components/comments';
 import { usePosts } from '../api/get-posts';
 import { DeletePost } from './delete-post';
 import { Reactions } from '@/features/reactions/components/reactions';
+import { PostReactors } from './post-reactors';
 
 export const PostsList = () => {
   const postsQuery = usePosts({});
@@ -46,6 +47,7 @@ export const PostsList = () => {
           </div>
           <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between' }}>
             <Reactions postId={post.PostID} userReaction={post.UserReaction} />
+            <PostReactors postId={post.PostID} />
             <Comments postId={post.PostID} />
           </div>
         </div>

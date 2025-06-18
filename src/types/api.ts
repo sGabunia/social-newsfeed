@@ -55,3 +55,11 @@ export type Comment = {
   Reactions: Reactions;
   Comments: Comment[];
 };
+
+export type Reactors = {
+  UserID: number;
+  FirstName: string;
+  LastName: string;
+  ReactionType: number;
+  AvatarUrl: string;
+};

@@ -2,6 +2,7 @@ import type { Comment } from '@/types/api';
 import { CreateCommentReply } from './create-comment-reply';
 import { DeleteComment } from './delete-comment';
 import { ToggleCommnetReactions } from '@/features/reactions/components/comment-reactions';
+import { CommentReactors } from './comment-reactors';
 
 export const CommentView = ({ comment }: { comment: Comment }) => {
   return (
@@ -24,6 +25,9 @@ export const CommentView = ({ comment }: { comment: Comment }) => {
         )}
         <div>
           <CreateCommentReply postId={comment.PostID} commentId={comment.CommentID} />
+        </div>
+        <div>
+          <CommentReactors commentId={comment.CommentID} />
         </div>
         <div>
           <DeleteComment
