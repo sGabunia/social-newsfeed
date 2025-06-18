@@ -22,9 +22,9 @@ export const useDeleteComment = ({ CommentID, mutationConfig }: UseDeleteComment
   return useMutation({
     onSuccess: (...args) => {
       queryClient.invalidateQueries({ queryKey: getCommentsQueryOptions(CommentID).queryKey });
-           queryClient.invalidateQueries({
-              queryKey: getPostsQueryOptions().queryKey
-            });
+      queryClient.invalidateQueries({
+        queryKey: getPostsQueryOptions().queryKey
+      });
       onSuccess?.(...args);
     },
     ...restConfig,

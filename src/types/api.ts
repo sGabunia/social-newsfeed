@@ -12,6 +12,7 @@ export type Post = {
   Reactions: Reactions;
   LastReactionAuthorID: number;
   LastReactionAuthor: string;
+  UserReaction?: string;
 };
 
 export type PostFile = {

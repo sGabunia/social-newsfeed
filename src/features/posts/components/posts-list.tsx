@@ -1,6 +1,7 @@
 import { Comments } from '@/features/comments/components/comments';
 import { usePosts } from '../api/get-posts';
 import { DeletePost } from './delete-post';
+import { Reactions } from '@/features/reactions/components/reactions';
 
 export const PostsList = () => {
   const postsQuery = usePosts({});
@@ -43,7 +44,8 @@ export const PostsList = () => {
               <DeletePost postId={post.PostID} authorId={post.AuthorID} />
             </div>
           </div>
-          <div>
+          <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between' }}>
+            <Reactions postId={post.PostID} userReaction={post.UserReaction} />
             <Comments postId={post.PostID} />
           </div>
         </div>
