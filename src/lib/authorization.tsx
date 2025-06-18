@@ -1,7 +1,7 @@
 import { useUser } from './auth';
 
 type AuthorizationProps = {
-  postAuthorId: number;
+  authorId: number;
   children: React.ReactNode;
 };
 
@@ -18,8 +18,8 @@ const useAuthorization = (postAuthorId: number) => {
   };
 };
 
-export const Authorization = ({ postAuthorId, children }: AuthorizationProps) => {
-  const { checkAccess } = useAuthorization(postAuthorId);
+export const Authorization = ({ authorId, children }: AuthorizationProps) => {
+  const { checkAccess } = useAuthorization(authorId);
 
   return <>{checkAccess ? children : null}</>;
 };

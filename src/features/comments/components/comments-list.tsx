@@ -1,4 +1,5 @@
 import { useComments } from '../api/get-comments';
+import { DeleteComment } from './delete-comment';
 
 type CommentsListProps = {
   postId: number;
@@ -26,7 +27,7 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
       {comments.map((comment) => (
         <div
           key={comment.CommentID}
-          style={{ marginBottom: '10px', border: '1px solid #ccc', padding: '5px' }}
+          style={{ marginBottom: '10px', border: '1px solid blue', padding: '5px' }}
         >
           <p>
             <strong>
@@ -39,7 +40,7 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
             return (
               <div
                 key={reply.CommentID}
-                style={{ marginLeft: '20px', border: '1px solid #eee', padding: '5px' }}
+                style={{ marginLeft: '20px', border: '1px solid green', padding: '5px' }}
               >
                 <p>
                   <strong>
@@ -50,6 +51,13 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
               </div>
             );
           })}
+          <div>
+            <DeleteComment
+              commentId={comment.CommentID}
+              authorId={comment.AuthorID}
+              postId={comment.PostID}
+            />
+          </div>
         </div>
       ))}
     </div>

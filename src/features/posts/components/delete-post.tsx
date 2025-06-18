@@ -10,7 +10,7 @@ export const DeletePost = ({ postId, authorId }: { postId: number; authorId: num
     }
   });
   return (
-    <Authorization postAuthorId={authorId}>
+    <Authorization authorId={authorId}>
       <div>
         <p>Delete Post</p>
         <button
