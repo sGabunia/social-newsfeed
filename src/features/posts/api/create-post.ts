@@ -7,7 +7,8 @@ import { getPostsQueryOptions } from './get-posts';
 import type { Post } from '@/types/api';
 
 export const createPostInputSchema = z.object({
-  Content: z.string().min(1, 'Content is required')
+  Content: z.string(),
+  FilesJson: z.string().optional()
 });
 
 export type CreatePostInput = z.infer<typeof createPostInputSchema>;
