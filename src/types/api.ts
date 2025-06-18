@@ -10,6 +10,8 @@ export type Post = {
   CreateTime: string;
   PostFiles: PostFile[];
   Reactions: Reactions;
+  LastReactionAuthorID: number;
+  LastReactionAuthor: string;
 };
 
 export type PostFile = {

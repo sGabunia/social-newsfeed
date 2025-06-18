@@ -28,6 +28,14 @@ export const PostsList = () => {
           <p>Lastname: {post.AuthorLastName}</p>
           <p>Name: {post.AuthorFirstName}</p>
           <p>Content: {post.Content}</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            {post.TotalReactions > 0 ? (
+              <p>
+                Likes: {post.LastReactionAuthor} and {post.TotalReactions - 1} others
+              </p>
+            ) : null}
+            {post.TotalReactions > 0 ? <p>Comments: {post.TotalComments}</p> : null}
+          </div>
           <div>
             <DeletePost postId={post.PostID} authorId={post.AuthorID} />
           </div>
