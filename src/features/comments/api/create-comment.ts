@@ -5,6 +5,7 @@ import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 import type { Comment } from '@/types/api';
 import { getCommentsQueryOptions } from './get-comments';
+import { getPostsQueryOptions } from '@/features/posts/api/get-posts';
 
 export const createCommentInputSchema = z.object({
   PostID: z.number(),
@@ -30,6 +31,9 @@ export const useCreateComment = ({ PostID, mutationConfig }: UseCreateCommentOpt
   return useMutation({
     onSuccess: (...args) => {
       queryClient.invalidateQueries({ queryKey: getCommentsQueryOptions(PostID).queryKey });
+      queryClient.invalidateQueries({
+        queryKey: getPostsQueryOptions().queryKey
+      });
       onSuccess?.(...args);
     },
     ...restConfig,

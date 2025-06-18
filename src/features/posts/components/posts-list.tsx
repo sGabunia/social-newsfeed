@@ -36,7 +36,7 @@ export const PostsList = () => {
                     Likes: {post.LastReactionAuthor} and {post.TotalReactions - 1} others
                   </p>
                 ) : null}
-                {post.TotalReactions > 0 ? <p>Comments: {post.TotalComments}</p> : null}
+                {post.TotalComments > 0 ? <p>Comments: {post.TotalComments}</p> : null}
               </div>
             </div>
             <div>
