@@ -50,7 +50,7 @@ export type Comment = {
   IsAuthor: boolean;
   TotalReactions: number;
   TotalReplies: number;
-  UserReaction: number;
+  UserReaction: string;
   CreateTime: string;
   Reactions: Reactions;
   Comments: Comment[];

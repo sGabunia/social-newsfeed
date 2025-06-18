@@ -1,4 +1,3 @@
-
 import { useComments } from '../api/get-comments';
 import { CommentView } from './comment';
 
