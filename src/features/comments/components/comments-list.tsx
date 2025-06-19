@@ -16,7 +16,7 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
 
   const comments = commentsQuery.data;
   if (comments?.length === 0) {
-    return <p>No comments found for this post.</p>;
+    return null;
   }
 
   if (!comments) return null;

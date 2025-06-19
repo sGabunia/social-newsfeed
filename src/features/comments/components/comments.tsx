@@ -8,8 +8,8 @@ type CommentsProps = {
 export const Comments = ({ postId }: CommentsProps) => {
   return (
     <>
-      <CommentsList postId={postId} />
       <CreateComment postId={postId} />
+      <CommentsList postId={postId} />
     </>
   );
 };

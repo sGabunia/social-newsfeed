@@ -18,7 +18,7 @@ export const Post = ({
   avatarUrl,
   deleteSection,
   reactorsSection,
-  actionsSection,
+  actionsSection
 }: PostProps) => {
   return (
     <Paper withBorder radius='md' p='md'>

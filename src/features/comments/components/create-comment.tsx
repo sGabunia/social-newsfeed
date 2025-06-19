@@ -1,4 +1,7 @@
+import { Box, Button, Flex, TextInput } from '@mantine/core';
 import { useCreateComment } from '../api/create-comment';
+import SmileIcon from '@/components/icons/smile-icon';
+import SubmitCommentIcon from '@/components/icons/submit-comment-icon';
 
 type CreateCommentProps = {
   postId: number;
@@ -37,14 +40,26 @@ export const CreateComment = ({ postId }: CreateCommentProps) => {
   };
 
   return (
-    <div>
-      <h4>Create Comment for post {postId}</h4>
+    <Box mt={20}>
       <form onSubmit={handleSubmit}>
-        <input type='text' placeholder='Enter your comment' name='content' />
-        <button type='submit' disabled={createCommentMutation.isPending}>
-          {createCommentMutation.isPending ? 'Adding ...' : 'Add comment'}
-        </button>
+        <TextInput
+          placeholder='Write your comment'
+          name='content'
+          radius={20}
+          rightSection={<SmileIcon />}
+        />
+        <Flex justify='flex-end' mt={10}>
+          <Button
+            type='submit'
+            variant='subtle'
+            size='compact-sm'
+            disabled={createCommentMutation.isPending}
+            loading={createCommentMutation.isPending}
+          >
+            <SubmitCommentIcon />
+          </Button>
+        </Flex>
       </form>
-    </div>
+    </Box>
   );
 };
