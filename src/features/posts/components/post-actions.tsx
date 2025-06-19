@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Group, Button, Box } from '@mantine/core';
+import { Group, Button, Box, Center } from '@mantine/core';
+import CommentIcon from '@/components/icons/comment-icon';
 
 type PostActionsProps = {
   reactionSection: React.ReactNode;
@@ -11,15 +12,19 @@ export const PostActions = ({ reactionSection, commentSection }: PostActionsProp
 
   return (
     <Box w={'100%'}>
-      <Group justify='space-between' align='center'>
-        {reactionSection}
+      <Group grow justify='space-between' align='center'>
+        <Center>
+            {reactionSection}
+        </Center>
 
-        <Button variant='subtle' onClick={() => setShowComments((prev) => !prev)}>
-          Show Comments
-        </Button>
+        <Center>
+          <Button fullWidth c="#535862" variant='subtle' onClick={() => setShowComments((prev) => !prev)}>
+            <CommentIcon /> Comment
+          </Button>
+        </Center>
       </Group>
 
-      {commentSection && showComments && <div>{commentSection}</div>}
+      {showComments && <Box>{commentSection}</Box>}
     </Box>
   );
 };
