@@ -21,7 +21,7 @@ export const Post = ({
   postReactorsSection
 }: PostProps) => {
   return (
-    <Paper withBorder radius='md' p="md">
+    <Paper withBorder radius='md' p='md'>
       <Flex justify='space-between' p='md'>
         <Group>
           <Avatar src={avatarUrl} alt='Jacob Warnhalter' radius='xl' />
@@ -37,8 +37,10 @@ export const Post = ({
       <Box>
         <Text size='sm'>{content}</Text>
       </Box>
-      <Box style={{borderBottom: "1px solid #f5f5f5"}}>{postReactorsSection}</Box>
-      <Flex justify='space-between' pt={10}>{reactionsSection}</Flex>
+      <Box style={{ borderBottom: '1px solid #f5f5f5' }}>{postReactorsSection}</Box>
+      <Flex justify='space-between' pt={10}>
+        {reactionsSection}
+      </Flex>
     </Paper>
   );
 };

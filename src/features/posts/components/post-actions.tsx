@@ -13,12 +13,15 @@ export const PostActions = ({ reactionSection, commentSection }: PostActionsProp
   return (
     <Box w={'100%'}>
       <Group grow justify='space-between' align='center'>
-        <Center>
-            {reactionSection}
-        </Center>
+        <Center>{reactionSection}</Center>
 
         <Center>
-          <Button fullWidth c="#535862" variant='subtle' onClick={() => setShowComments((prev) => !prev)}>
+          <Button
+            fullWidth
+            c='#535862'
+            variant='subtle'
+            onClick={() => setShowComments((prev) => !prev)}
+          >
             <CommentIcon /> Comment
           </Button>
         </Center>
