@@ -1,11 +1,11 @@
 import { Text } from '@mantine/core';
 
-type ReactionSummaryProps = {
+type PostReactionSummaryProps = {
   lastReactor?: string;
   totalReactions: number;
 };
 
-export const ReactionSummary = ({ lastReactor, totalReactions }: ReactionSummaryProps) => {
+export const PostReactionSummary = ({ lastReactor, totalReactions }: PostReactionSummaryProps) => {
   if (totalReactions === 0) {
     return null;
   }

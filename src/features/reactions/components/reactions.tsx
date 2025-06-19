@@ -1,6 +1,6 @@
 import { useReactions } from '@/lib/reactions';
 import { useToggleReaction } from '../api/toggle-reaction';
-import { Popover, Group, ActionIcon } from '@mantine/core';
+import { ActionIcon, Menu } from '@mantine/core';
 import { useState } from 'react';
 
 type ReactionsProps = {
@@ -50,39 +50,39 @@ export const Reactions = ({ postId, userReaction }: ReactionsProps) => {
   };
 
   return (
-    <Popover
+    <Menu
       opened={opened}
       onChange={setOpened}
       position='top'
       shadow='md'
+      trigger='hover'
+      openDelay={300}
+      closeDelay={150}
       offset={1}
       transitionProps={{ transition: 'pop' }}
       onClose={() => setOpened(false)}
     >
-      <Popover.Target>
+      <Menu.Target>
         <ActionIcon
           color={userReaction ? 'blue' : '#fff'}
           variant={userReaction ? 'light' : 'transparent'}
           onClick={handleReactionClick}
-          onMouseEnter={() => setOpened(true)}
         >
           {getReactionEmoji(displayReaction)}
         </ActionIcon>
-      </Popover.Target>
-      <Popover.Dropdown>
-        <Group gap={3}>
-          {reactionsQuery.data?.map((reaction) => (
+      </Menu.Target>
+      <Menu.Dropdown style={{ display: 'flex' }}>
+        {reactionsQuery.data?.map((reaction) => (
+          <Menu.Item key={reaction} onClick={() => handleReactionSelect(reaction)}>
             <ActionIcon
-              key={reaction}
               color={reaction === userReaction ? 'blue' : '#fff'}
               variant={reaction === userReaction ? 'light' : 'transparent'}
-              onClick={() => handleReactionSelect(reaction)}
             >
               {getReactionEmoji(reaction)}
             </ActionIcon>
-          ))}
-        </Group>
-      </Popover.Dropdown>
-    </Popover>
+          </Menu.Item>
+        ))}
+      </Menu.Dropdown>
+    </Menu>
   );
 };

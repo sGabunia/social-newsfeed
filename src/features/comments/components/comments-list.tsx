@@ -23,7 +23,6 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
 
   return (
     <div>
-      <h3>Comments:</h3>
       {comments.map((comment) => {
         return (
           <div key={comment.CommentID} style={{ marginLeft: '20px' }}>

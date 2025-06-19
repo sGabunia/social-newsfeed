@@ -1,6 +1,6 @@
-import { Button, Group, Popover, Skeleton, Text } from '@mantine/core';
-import { usePostReactors } from '../api/get-post-reactors';
 import { useState } from 'react';
+import { Box, Button, Group, Popover, Skeleton, Text } from '@mantine/core';
+import { usePostReactors } from '../api/get-post-reactors';
 
 type PostReactorsProps = {
   postId: number;
@@ -18,11 +18,17 @@ export const PostReactors = ({ postId, reactionSummary, reactionIcons }: PostRea
   });
 
   return (
-    <div>
+    <Box mt={20} mb={15}>
       <Popover opened={opened} onChange={setOpened} withinPortal>
         <Popover.Target>
-          <Button variant='subtle' onClick={() => setOpened((prev) => !prev)}>
-            <Group>
+          <Button
+            variant='transparent'
+            size='compact-xs'
+            p={0}
+            onMouseEnter={() => setOpened(true)}
+            onMouseLeave={() => setOpened(false)}
+          >
+            <Group gap={3}>
               {reactionIcons} {reactionSummary}
             </Group>
           </Button>
@@ -46,6 +52,6 @@ export const PostReactors = ({ postId, reactionSummary, reactionIcons }: PostRea
           )}
         </Popover.Dropdown>
       </Popover>
-    </div>
+    </Box>
   );
 };

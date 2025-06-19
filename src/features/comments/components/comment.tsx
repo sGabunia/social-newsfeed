@@ -3,47 +3,57 @@ import { CreateCommentReply } from './create-comment-reply';
 import { DeleteComment } from './delete-comment';
 import { ToggleCommnetReactions } from '@/features/reactions/components/comment-reactions';
 import { CommentReactors } from './comment-reactors';
+import { Paper, Flex, Group, Text, Avatar, Box } from '@mantine/core';
+import { CommentActions } from './coment-action';
+import { ReactionIcons } from '@/features/posts/components/reaction-icons';
 
 export const CommentView = ({ comment }: { comment: Comment }) => {
   return (
-    <div>
-      <div
-        key={comment.CommentID}
-        style={{ marginBottom: '10px', border: '1px solid blue', padding: '5px' }}
-      >
-        <p>
-          <strong>
-            {comment.AuthorFirstName} {comment.AuthorLastName}
-          </strong>
-        </p>
-        <p>{comment.Content}</p>
-        <p>Comment ID: {comment.CommentID}</p>
-        {comment.ParentCommentID ? (
-          <p>parent comment: {comment.ParentCommentID}</p>
-        ) : (
-          'no parent comment'
-        )}
+    <Paper withBorder radius='md' p='md'>
+      <Flex justify='space-between' p='md'>
+        <Group>
+          <Avatar src={comment.AuthorAvatar} alt='Jacob Warnhalter' radius='xl' />
+          <div>
+            <Text fz='sm'>
+              {comment.AuthorFirstName} {comment.AuthorLastName}
+            </Text>
+            <Text fz='xs' c='dimmed'>
+              {comment.CreateTime}
+            </Text>
+          </div>
+        </Group>
         <div>
-          <CreateCommentReply postId={comment.PostID} commentId={comment.CommentID} />
-        </div>
-        <div>
-          <CommentReactors commentId={comment.CommentID} />
-        </div>
-        <div>
+          {' '}
           <DeleteComment
             commentId={comment.CommentID}
             authorId={comment.AuthorID}
             postId={comment.PostID}
           />
         </div>
-        <div style={{ marginTop: '20px' }}>
+      </Flex>
+      <Box>
+        <Text size='sm'>{comment.Content}</Text>
+      </Box>
+
+      <CommentActions
+        reactorsSection={
+          <CommentReactors
+            commentId={comment.CommentID}
+            reactionSummary={
+              <ReactionIcons reactions={comment.Reactions} reactionCount={comment.TotalReactions} />
+            }
+          />
+        }
+        reactionSection={
           <ToggleCommnetReactions
             commentId={comment.CommentID}
             postId={comment.PostID}
             userReaction={comment.UserReaction}
           />
-        </div>
-      </div>
+        }
+        replySection={<CreateCommentReply postId={comment.PostID} commentId={comment.CommentID} />}
+      />
+
       {comment.Comments && comment.Comments.length > 0 ? (
         <div>
           {comment.Comments.map((childComment) => (
@@ -51,6 +61,6 @@ export const CommentView = ({ comment }: { comment: Comment }) => {
           ))}
         </div>
       ) : null}
-    </div>
+    </Paper>
   );
 };

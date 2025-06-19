@@ -2,9 +2,9 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 import type { QueryConfig } from '@/lib/react-query';
 
 import { api } from '@/lib/api-client';
-import type { Reactors } from '@/types/api';
+import type { Reactor } from '@/types/api';
 
-export const getCommentReactors = (commentId: number): Promise<Reactors> => {
+export const getCommentReactors = (commentId: number): Promise<Reactor[]> => {
   return api.post('Comment/ReactorGetAll', { CommentID: commentId });
 };
 

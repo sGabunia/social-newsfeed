@@ -5,7 +5,7 @@ import { Reactions } from '@/features/reactions/components/reactions';
 import { PostReactors } from './post-reactors';
 import { Post } from './post';
 import { Box } from '@mantine/core';
-import { ReactionSummary } from './reaction-summary';
+import { PostReactionSummary } from './post-reaction-summary';
 import { ReactionIcons } from './reaction-icons';
 import { PostActions } from './post-actions';
 
@@ -38,7 +38,7 @@ export const PostsList = () => {
               <PostReactors
                 postId={post.PostID}
                 reactionSummary={
-                  <ReactionSummary
+                  <PostReactionSummary
                     lastReactor={post.LastReactionAuthor}
                     totalReactions={post.TotalReactions}
                   />
