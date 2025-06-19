@@ -7,8 +7,8 @@ type PostProps = {
   createdAt: string;
   avatarUrl: string;
   deleteSection: React.ReactNode;
-  reactionsSection: React.ReactNode;
-  postReactorsSection?: React.ReactNode;
+  reactorsSection?: React.ReactNode;
+  actionsSection: React.ReactNode;
 };
 
 export const Post = ({
@@ -17,8 +17,8 @@ export const Post = ({
   createdAt,
   avatarUrl,
   deleteSection,
-  reactionsSection,
-  postReactorsSection
+  reactorsSection,
+  actionsSection,
 }: PostProps) => {
   return (
     <Paper withBorder radius='md' p='md'>
@@ -37,9 +37,9 @@ export const Post = ({
       <Box>
         <Text size='sm'>{content}</Text>
       </Box>
-      <Box style={{ borderBottom: '1px solid #f5f5f5' }}>{postReactorsSection}</Box>
+      <Box style={{ borderBottom: '1px solid #f5f5f5' }}>{reactorsSection}</Box>
       <Flex justify='space-between' pt={10}>
-        {reactionsSection}
+        {actionsSection}
       </Flex>
     </Paper>
   );

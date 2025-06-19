@@ -34,7 +34,7 @@ export const PostsList = () => {
             createdAt={post.CreateTime}
             avatarUrl={post.AuthorAvatarUrl}
             deleteSection={<DeletePost postId={post.PostID} authorId={post.AuthorID} />}
-            postReactorsSection={
+            reactorsSection={
               <PostReactors
                 postId={post.PostID}
                 reactionSummary={
@@ -46,7 +46,7 @@ export const PostsList = () => {
                 reactionIcons={<ReactionIcons reactions={post.Reactions} />}
               />
             }
-            reactionsSection={
+            actionsSection={
               <PostActions
                 reactionSection={
                   <Reactions postId={post.PostID} userReaction={post.UserReaction} />

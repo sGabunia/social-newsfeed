@@ -8,8 +8,8 @@ function App() {
     <AppProvider>
       <ContentLayout>
         <Flex>
-        <Posts />
-        <div style={{ border: '1px solid gray', width: '300px', height: '400px' }}>Sidebar</div>
+          <Posts />
+          <div style={{ border: '1px solid gray', width: '300px', height: '400px' }}>Sidebar</div>
         </Flex>
       </ContentLayout>
     </AppProvider>
