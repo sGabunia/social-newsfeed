@@ -3,6 +3,10 @@ import { usePosts } from '../api/get-posts';
 import { DeletePost } from './delete-post';
 import { Reactions } from '@/features/reactions/components/reactions';
 import { PostReactors } from './post-reactors';
+import { Post } from './post';
+import { Stack } from '@mantine/core';
+import { ReactionSummary } from './reaction-summary';
+import { ReactionIcons } from './reaction-icons';
 
 export const PostsList = () => {
   const postsQuery = usePosts({});
@@ -21,36 +25,37 @@ export const PostsList = () => {
 
   return (
     <div>
-      <h1>Posts</h1>
       {posts.map((post) => (
-        <div
+        <Stack
           key={post.PostID}
           style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div>
-              <p>Lastname: {post.AuthorLastName}</p>
-              <p>Name: {post.AuthorFirstName}</p>
-              <p>Content: {post.Content}</p>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                {post.TotalReactions > 0 ? (
-                  <p>
-                    Likes: {post.LastReactionAuthor} and {post.TotalReactions - 1} others
-                  </p>
-                ) : null}
-                {post.TotalComments > 0 ? <p>Comments: {post.TotalComments}</p> : null}
-              </div>
-            </div>
-            <div>
-              <DeletePost postId={post.PostID} authorId={post.AuthorID} />
-            </div>
-          </div>
-          <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between' }}>
-            <Reactions postId={post.PostID} userReaction={post.UserReaction} />
-            <PostReactors postId={post.PostID} />
-            <Comments postId={post.PostID} />
-          </div>
-        </div>
+          <Post
+            author={post.AuthorFirstName + ' ' + post.AuthorLastName}
+            content={post.Content}
+            createdAt={post.CreateTime}
+            avatarUrl={post.AuthorAvatarUrl}
+            deleteSection={<DeletePost postId={post.PostID} authorId={post.AuthorID} />}
+            postReactorsSection={
+              <PostReactors
+                postId={post.PostID}
+                reactionSummary={
+                  <ReactionSummary
+                    lastReactor={post.LastReactionAuthor}
+                    totalReactions={post.TotalReactions}
+                  />
+                }
+                reactionIcons={<ReactionIcons reactions={post.Reactions} />}
+              />
+            }
+            reactionsSection={
+              <>
+                <Reactions postId={post.PostID} userReaction={post.UserReaction} />
+                <Comments postId={post.PostID} />
+              </>
+            }
+          />
+        </Stack>
       ))}
     </div>
   );

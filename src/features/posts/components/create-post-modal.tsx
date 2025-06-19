@@ -84,7 +84,12 @@ export const CreatePostModal = ({ opened, onClose }: CreatePostModalProps) => {
       size='lg'
     >
       <form onSubmit={onSubmit}>
-        <Textarea name='content' autosize minRows={7} />
+        <Textarea
+          name='content'
+          autosize
+          minRows={7}
+          placeholder='What would you like to talk about today?'
+        />
         <Box mt={20}>
           <ActionIcon
             onClick={() => {

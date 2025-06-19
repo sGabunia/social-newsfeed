@@ -56,10 +56,14 @@ export type Comment = {
   Comments: Comment[];
 };
 
-export type Reactors = {
+export type Reactor = {
   UserID: number;
   FirstName: string;
   LastName: string;
   ReactionType: number;
   AvatarUrl: string;
+};
+
+export type Reactors = {
+  Reactors: Reactor[];
 };
