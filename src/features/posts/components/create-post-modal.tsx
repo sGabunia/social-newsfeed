@@ -2,8 +2,8 @@ import { useFileDialog } from '@/hooks/useFileDialog';
 import { useCreatePost } from '../api/create-post';
 import { getBase64 } from '@/helpers/getBase64';
 import { Modal, Text, Textarea, Button, ActionIcon, Group, Box } from '@mantine/core';
-import { FileUploadIcon } from '@/components/icons/file-upload';
-import XCircleIcon from '@/components/icons/x-circle';
+import { FileUploadIcon } from '@/components/icons/file-upload-icon';
+import XCircleIcon from '@/components/icons/x-circle-icon';
 
 type CreatePostModalProps = {
   onClose: () => void;

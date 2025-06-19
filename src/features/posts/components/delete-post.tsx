@@ -1,7 +1,7 @@
 import { Authorization } from '@/lib/authorization';
 import { useDeletePost } from '../api/delete-post';
 import { ActionIcon, Menu, Text } from '@mantine/core';
-import DotsIcon from '@/components/icons/dots';
+import DotsIcon from '@/components/icons/dots-icon';
 
 export const DeletePost = ({ postId, authorId }: { postId: number; authorId: number }) => {
   const deletePostMutation = useDeletePost({
