@@ -34,11 +34,11 @@ export const Post = ({
         </Group>
         {deleteSection}
       </Flex>
-      <Box>{postReactorsSection}</Box>
       <Box>
         <Text size='sm'>{content}</Text>
       </Box>
-      {reactionsSection}
+      <Box>{postReactorsSection}</Box>
+      <Flex justify='space-between'>{reactionsSection}</Flex>
     </Paper>
   );
 };

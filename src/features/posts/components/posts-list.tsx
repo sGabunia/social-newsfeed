@@ -4,9 +4,10 @@ import { DeletePost } from './delete-post';
 import { Reactions } from '@/features/reactions/components/reactions';
 import { PostReactors } from './post-reactors';
 import { Post } from './post';
-import { Stack } from '@mantine/core';
+import { Box } from '@mantine/core';
 import { ReactionSummary } from './reaction-summary';
 import { ReactionIcons } from './reaction-icons';
+import { PostActions } from './post-actions';
 
 export const PostsList = () => {
   const postsQuery = usePosts({});
@@ -26,10 +27,7 @@ export const PostsList = () => {
   return (
     <div>
       {posts.map((post) => (
-        <Stack
-          key={post.PostID}
-          style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}
-        >
+        <Box key={post.PostID} mb='md'>
           <Post
             author={post.AuthorFirstName + ' ' + post.AuthorLastName}
             content={post.Content}
@@ -49,13 +47,15 @@ export const PostsList = () => {
               />
             }
             reactionsSection={
-              <>
-                <Reactions postId={post.PostID} userReaction={post.UserReaction} />
-                <Comments postId={post.PostID} />
-              </>
+              <PostActions
+                reactionSection={
+                  <Reactions postId={post.PostID} userReaction={post.UserReaction} />
+                }
+                commentSection={<Comments postId={post.PostID} />}
+              />
             }
           />
-        </Stack>
+        </Box>
       ))}
     </div>
   );
