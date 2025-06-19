@@ -73,11 +73,12 @@ export const Reactions = ({ postId, userReaction }: ReactionsProps) => {
       </Menu.Target>
       <Menu.Dropdown style={{ display: 'flex' }}>
         {reactionsQuery.data?.map((reaction) => (
-          <Menu.Item key={reaction} onClick={() => handleReactionSelect(reaction)}>
-            <ActionIcon
-              color={reaction === userReaction ? 'blue' : '#fff'}
-              variant={reaction === userReaction ? 'light' : 'transparent'}
-            >
+          <Menu.Item
+            key={reaction}
+            onClick={() => handleReactionSelect(reaction)}
+            bg={reaction === userReaction ? 'lightblue' : 'transparent'}
+          >
+            <ActionIcon size='xs' variant={reaction === userReaction ? 'light' : 'transparent'}>
               {getReactionEmoji(reaction)}
             </ActionIcon>
           </Menu.Item>

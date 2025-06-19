@@ -1,6 +1,6 @@
 import { useReactions } from '@/lib/reactions';
 import { useToggleCommentReaction } from '../api/toggle-comment-reaction';
-import { Popover, Group, ActionIcon, Button } from '@mantine/core';
+import { ActionIcon, Menu } from '@mantine/core';
 import { useState } from 'react';
 
 type CommentReactionsProps = {
@@ -51,41 +51,41 @@ export const ToggleCommnetReactions = ({
     setOpened(false);
   };
   return (
-    <Popover
+    <Menu
       opened={opened}
       onChange={setOpened}
       position='top'
       shadow='md'
+      trigger='hover'
+      openDelay={300}
+      closeDelay={150}
       offset={1}
       transitionProps={{ transition: 'pop' }}
       onClose={() => setOpened(false)}
     >
-      <Popover.Target>
-        <Button
+      <Menu.Target>
+        <ActionIcon
           c={userReaction ? 'blue' : 'grey'}
-          variant={'transparent'}
+          variant='transparent'
           onClick={handleReactionClick}
-          onMouseEnter={() => setOpened(true)}
-          onMouseLeave={() => setOpened(false)}
           size='compact-xs'
         >
           Like
-        </Button>
-      </Popover.Target>
-      <Popover.Dropdown>
-        <Group gap={3}>
-          {reactionsQuery.data?.map((reaction) => (
-            <ActionIcon
-              key={reaction}
-              color={reaction === userReaction ? 'blue' : '#fff'}
-              variant={reaction === userReaction ? 'light' : 'transparent'}
-              onClick={() => handleReactionSelect(reaction)}
-            >
+        </ActionIcon>
+      </Menu.Target>
+      <Menu.Dropdown style={{ display: 'flex' }}>
+        {reactionsQuery.data?.map((reaction) => (
+          <Menu.Item
+            key={reaction}
+            onClick={() => handleReactionSelect(reaction)}
+            bg={reaction === userReaction ? 'lightblue' : 'transparent'}
+          >
+            <ActionIcon size='xs' variant={reaction === userReaction ? 'light' : 'transparent'}>
               {getReactionEmoji(reaction)}
             </ActionIcon>
-          ))}
-        </Group>
-      </Popover.Dropdown>
-    </Popover>
+          </Menu.Item>
+        ))}
+      </Menu.Dropdown>
+    </Menu>
   );
 };
