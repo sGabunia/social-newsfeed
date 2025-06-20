@@ -57,7 +57,7 @@ export const PostsList = () => {
                   />
                 }
                 reactionIcons={<ReactionIcons reactions={post.Reactions} />}
-                commentsSummary={<PostCommenters commenters={post.TotalComments}/>}
+                commentsSummary={<PostCommenters commenters={post.TotalComments} />}
               />
             }
             actionsSection={

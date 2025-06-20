@@ -24,7 +24,7 @@ export const PostReactors = ({
   });
 
   return (
-    <Flex mt={20} mb={15} justify="space-between">
+    <Flex mt={20} mb={15} justify='space-between'>
       <Popover opened={opened} onChange={setOpened} withinPortal>
         <Popover.Target>
           <Button
