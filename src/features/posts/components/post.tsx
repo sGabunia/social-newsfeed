@@ -1,4 +1,4 @@
-import { Avatar, Group, Paper, Text, Box, Flex } from '@mantine/core';
+import { Avatar, Group, Paper, Text, Box, Flex, Image } from '@mantine/core';
 import type React from 'react';
 import styles from './post.module.css';
 import { TimeFormatter } from '@/components/ui/time-formatter';
@@ -9,6 +9,7 @@ type PostProps = {
   createdAt: string;
   avatarUrl: string;
   deleteSection: React.ReactNode;
+  postImage?: string;
   reactorsSection?: React.ReactNode;
   actionsSection: React.ReactNode;
 };
@@ -20,7 +21,8 @@ export const Post = ({
   avatarUrl,
   deleteSection,
   reactorsSection,
-  actionsSection
+  actionsSection,
+  postImage
 }: PostProps) => {
   return (
     <Paper withBorder radius='md' p='md'>
@@ -39,6 +41,11 @@ export const Post = ({
           {content}
         </Text>
       </Box>
+      {postImage && (
+        <Box>
+          <Image src={postImage} alt='post image' loading="lazy" />
+        </Box>
+      )}
       <Box style={{ borderBottom: '1px solid #f5f5f5' }}>{reactorsSection}</Box>
       <Flex justify='space-between' pt={10}>
         {actionsSection}

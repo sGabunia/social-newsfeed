@@ -44,6 +44,7 @@ export const PostsList = () => {
             content={post.Content}
             createdAt={post.CreateTime}
             avatarUrl={post.AuthorAvatarUrl}
+            postImage={post.PostFiles?.length ? post.PostFiles[0].FileUrl : undefined}
             deleteSection={<DeletePost postId={post.PostID} authorId={post.AuthorID} />}
             reactorsSection={
               <PostReactors

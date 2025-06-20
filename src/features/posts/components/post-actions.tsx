@@ -19,7 +19,7 @@ export const PostActions = ({ reactionSection, commentSection }: PostActionsProp
           <Button
             fullWidth
             c='#535862'
-            variant='subtle'
+            variant='transparent'
             onClick={() => setShowComments((prev) => !prev)}
           >
             <CommentIcon /> Comment
