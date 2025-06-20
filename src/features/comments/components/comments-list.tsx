@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, Stack } from '@mantine/core';
 import { useComments } from '../api/get-comments';
 import { CommentView } from './comment';
 
@@ -23,14 +23,14 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
   if (!comments) return null;
 
   return (
-    <Box>
+    <Stack gap={20}>
       {comments.map((comment) => {
         return (
-          <Box key={comment.CommentID} style={{ marginLeft: '20px' }}>
+          <Box key={comment.CommentID} ml={20}>
             <CommentView comment={comment} />
           </Box>
         );
       })}
-    </Box>
+    </Stack>
   );
 };

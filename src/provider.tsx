@@ -15,7 +15,13 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <MantineProvider>{children}</MantineProvider>
+      <MantineProvider
+        theme={{
+          primaryColor: 'green'
+        }}
+      >
+        {children}
+      </MantineProvider>
     </QueryClientProvider>
   );
 };
