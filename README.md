@@ -37,7 +37,7 @@ Not using index files in folders for exports.
 - Have not used any outside react, On initial load I fetch user with big stale time, mocking auth, so with react query I get the user without sending new request
 
 ## React design patters
-- Used slot and composition patterns in Post component, to keep components small
+- Used slot and composition patterns in Post component, to keep components small and avoid props drilling
 
 ## Features
 

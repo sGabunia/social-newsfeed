@@ -1,10 +1,10 @@
 import { AppProvider } from './provider';
-import Posts from './app/routes/posts/posts';
+import MainRoute from './app/routes/posts/MainRoute';
 
 function App() {
   return (
     <AppProvider>
-      <Posts />
+      <MainRoute />
     </AppProvider>
   );
 }

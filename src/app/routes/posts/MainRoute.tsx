@@ -6,7 +6,7 @@ import { useUser } from '@/lib/auth';
 import { useReactions } from '@/lib/reactions';
 import { Container, Grid, Loader, Stack, Text } from '@mantine/core';
 
-const Posts = () => {
+const MainRoute = () => {
   const user = useUser();
   // Most likely, the user is already authenticated at this point. Faking as user already logged in.
 
@@ -52,4 +52,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default MainRoute;
