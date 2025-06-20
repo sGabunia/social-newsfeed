@@ -38,20 +38,22 @@ export const useToggleCommentReaction = ({
     onMutate: async ({ CommentID, ReactionType }) => {
       await queryClient.cancelQueries({ queryKey: getCommentsQueryOptions(postId).queryKey });
 
-      const previousComments = queryClient.getQueryData<Comment[]>(getCommentsQueryOptions(postId).queryKey);
+      const previousComments = queryClient.getQueryData<Comment[]>(
+        getCommentsQueryOptions(postId).queryKey
+      );
 
-      queryClient.setQueryData<Comment[]>(getCommentsQueryOptions(postId).queryKey, (old):any => {
+      queryClient.setQueryData<Comment[]>(getCommentsQueryOptions(postId).queryKey, (old): any => {
         if (!old) return [];
         return old.map((comment) => {
           if (comment.CommentID === CommentID) {
             const oldReactionType = comment.UserReaction;
-            
+
             const updatedReactions = { ...comment.Reactions };
-            
+
             if (oldReactionType) {
               updatedReactions[oldReactionType as keyof typeof updatedReactions] -= 1;
             }
-            
+
             if (ReactionType !== oldReactionType) {
               updatedReactions[ReactionType as keyof typeof updatedReactions] += 1;
             }
@@ -60,9 +62,12 @@ export const useToggleCommentReaction = ({
               ...comment,
               UserReaction: ReactionType !== oldReactionType ? ReactionType : undefined,
               Reactions: updatedReactions,
-              TotalReactions: ReactionType !== oldReactionType 
-                ? (oldReactionType ? comment.TotalReactions : comment.TotalReactions + 1)
-                : comment.TotalReactions - 1
+              TotalReactions:
+                ReactionType !== oldReactionType
+                  ? oldReactionType
+                    ? comment.TotalReactions
+                    : comment.TotalReactions + 1
+                  : comment.TotalReactions - 1
             };
           }
           return comment;

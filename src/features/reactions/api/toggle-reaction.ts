@@ -39,13 +39,13 @@ export const useToggleReaction = ({ mutationConfig }: UseToggleReactionOptions =
         return old.map((post) => {
           if (post.PostID === PostID) {
             const oldReactionType = post.UserReaction;
-            
+
             const updatedReactions = { ...post.Reactions };
-            
+
             if (oldReactionType) {
               updatedReactions[oldReactionType as keyof typeof updatedReactions] -= 1;
             }
-        
+
             if (ReactionType !== oldReactionType) {
               updatedReactions[ReactionType as keyof typeof updatedReactions] += 1;
             }
@@ -54,9 +54,12 @@ export const useToggleReaction = ({ mutationConfig }: UseToggleReactionOptions =
               ...post,
               UserReaction: ReactionType !== oldReactionType ? ReactionType : undefined,
               Reactions: updatedReactions,
-              TotalReactions: ReactionType !== oldReactionType 
-                ? (oldReactionType ? post.TotalReactions : post.TotalReactions + 1)
-                : post.TotalReactions - 1
+              TotalReactions:
+                ReactionType !== oldReactionType
+                  ? oldReactionType
+                    ? post.TotalReactions
+                    : post.TotalReactions + 1
+                  : post.TotalReactions - 1
             };
           }
           return post;

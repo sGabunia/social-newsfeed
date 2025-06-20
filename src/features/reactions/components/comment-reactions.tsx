@@ -80,9 +80,7 @@ export const ToggleCommnetReactions = ({
             onClick={() => handleReactionSelect(reaction)}
             bg={reaction === userReaction ? 'lightblue' : 'transparent'}
           >
-            <ActionIcon size='xs' variant={reaction === userReaction ? 'light' : 'transparent'}>
-              {getReactionEmoji(reaction)}
-            </ActionIcon>
+            {getReactionEmoji(reaction)}
           </Menu.Item>
         ))}
       </Menu.Dropdown>

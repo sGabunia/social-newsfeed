@@ -1,6 +1,6 @@
 import { useReactions } from '@/lib/reactions';
 import { useToggleReaction } from '../api/toggle-reaction';
-import { ActionIcon, Button, Menu } from '@mantine/core';
+import { Button, Menu } from '@mantine/core';
 import { useState } from 'react';
 import { ReactionIcon } from './reaction-icon';
 
@@ -79,9 +79,7 @@ export const Reactions = ({ postId, userReaction }: ReactionsProps) => {
             onClick={() => handleReactionSelect(reaction)}
             bg={reaction === userReaction ? 'lightblue' : 'transparent'}
           >
-            <ActionIcon size='xs' variant={reaction === userReaction ? 'light' : 'transparent'}>
-              {getReactionEmoji(reaction)}
-            </ActionIcon>
+            {getReactionEmoji(reaction)}
           </Menu.Item>
         ))}
       </Menu.Dropdown>
