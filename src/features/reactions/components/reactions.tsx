@@ -1,7 +1,8 @@
 import { useReactions } from '@/lib/reactions';
 import { useToggleReaction } from '../api/toggle-reaction';
-import { ActionIcon, Menu } from '@mantine/core';
+import { ActionIcon, Button, Menu } from '@mantine/core';
 import { useState } from 'react';
+import { ReactionIcon } from './reaction-icon';
 
 type ReactionsProps = {
   postId: number;
@@ -16,8 +17,7 @@ export const Reactions = ({ postId, userReaction }: ReactionsProps) => {
   // Display either the user's current reaction or "LIKE" as default
   const displayReaction = userReaction || 'LIKE';
 
-  // Get emoji for the reaction
-  const getReactionEmoji = (reactionType: string) => {
+    const getReactionEmoji = (reactionType: string) => {
     switch (reactionType) {
       case 'LIKE':
         return '👍';
@@ -63,13 +63,15 @@ export const Reactions = ({ postId, userReaction }: ReactionsProps) => {
       onClose={() => setOpened(false)}
     >
       <Menu.Target>
-        <ActionIcon
+        <Button
           color={userReaction ? 'blue' : '#fff'}
           variant={userReaction ? 'light' : 'transparent'}
           onClick={handleReactionClick}
+          size="md"
+
         >
-          {getReactionEmoji(displayReaction)}
-        </ActionIcon>
+          <ReactionIcon reactionType={displayReaction} />
+        </Button>
       </Menu.Target>
       <Menu.Dropdown style={{ display: 'flex' }}>
         {reactionsQuery.data?.map((reaction) => (
