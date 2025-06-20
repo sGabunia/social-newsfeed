@@ -33,6 +33,12 @@ Types are in top level file. But in bigger projects it can be in features folder
 It's a small project, so structure is as simple, as possible.
 Not using index files in folders for exports.
 
+## State managment
+- Have not used any outside react, On initial load I fetch user with big stale time, mocking auth, so with react query I get the user without sending new request
+
+## React design patters
+- Used slot and composition patterns in Post component, to keep components small
+
 ## Features
 
 ### 📝 Posts

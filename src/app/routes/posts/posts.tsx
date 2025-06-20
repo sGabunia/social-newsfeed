@@ -30,7 +30,7 @@ const Posts = () => {
   }
 
   if (!user.data) {
-    return null;
+    return <Text>Please log in</Text>;
   }
 
   return (
