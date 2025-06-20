@@ -5,6 +5,7 @@ import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 import { getPostsQueryOptions } from '@/features/posts/api/get-posts';
 import { getCommentsQueryOptions } from '@/features/comments/api/get-comments';
+import type { Comment } from '@/types/api';
 
 export const toggleCommentReactiontInputSchema = z.object({
   CommentID: z.number(),
@@ -21,7 +22,10 @@ const toggleCommentReaction = (
 
 type UseToggleCommentReactionOptions = {
   postId: number;
-  mutationConfig?: MutationConfig<typeof toggleCommentReaction>;
+  mutationConfig?: Omit<
+    MutationConfig<typeof toggleCommentReaction>,
+    'onMutate' | 'onError' | 'onSettled'
+  >;
 };
 
 export const useToggleCommentReaction = ({
@@ -30,20 +34,59 @@ export const useToggleCommentReaction = ({
 }: UseToggleCommentReactionOptions) => {
   const queryClient = useQueryClient();
 
-  const { onSuccess, ...restConfig } = mutationConfig || {};
-
   return useMutation({
-    onSuccess: (...args) => {
-      queryClient.invalidateQueries({
-        queryKey: getPostsQueryOptions().queryKey
-      });
-      queryClient.invalidateQueries({
-        queryKey: getCommentsQueryOptions(postId).queryKey
+    onMutate: async ({ CommentID, ReactionType }) => {
+      await queryClient.cancelQueries({ queryKey: getCommentsQueryOptions(postId).queryKey });
+
+      const previousComments = queryClient.getQueryData<Comment[]>(getCommentsQueryOptions(postId).queryKey);
+
+      queryClient.setQueryData<Comment[]>(getCommentsQueryOptions(postId).queryKey, (old):any => {
+        if (!old) return [];
+        return old.map((comment) => {
+          if (comment.CommentID === CommentID) {
+            const oldReactionType = comment.UserReaction;
+            
+            const updatedReactions = { ...comment.Reactions };
+            
+            if (oldReactionType) {
+              updatedReactions[oldReactionType as keyof typeof updatedReactions] -= 1;
+            }
+            
+            if (ReactionType !== oldReactionType) {
+              updatedReactions[ReactionType as keyof typeof updatedReactions] += 1;
+            }
+
+            return {
+              ...comment,
+              UserReaction: ReactionType !== oldReactionType ? ReactionType : undefined,
+              Reactions: updatedReactions,
+              TotalReactions: ReactionType !== oldReactionType 
+                ? (oldReactionType ? comment.TotalReactions : comment.TotalReactions + 1)
+                : comment.TotalReactions - 1
+            };
+          }
+          return comment;
+        });
       });
 
-      onSuccess?.(...args);
+      return { previousComments };
     },
-    ...restConfig,
+
+    onError: (_err, _variables, context) => {
+      if (context?.previousComments) {
+        queryClient.setQueryData(
+          getCommentsQueryOptions(postId).queryKey,
+          context.previousComments
+        );
+      }
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: getCommentsQueryOptions(postId).queryKey });
+      queryClient.invalidateQueries({ queryKey: getPostsQueryOptions().queryKey });
+    },
+
+    ...mutationConfig,
     mutationFn: toggleCommentReaction
   });
 };
