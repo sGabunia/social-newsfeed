@@ -1,3 +1,4 @@
+import { Welcome } from '@/features/header/welcome';
 import { CreatePost } from '@/features/posts/components/create-post';
 import { PostsList } from '@/features/posts/components/posts-list';
 import { useUser } from '@/lib/auth';
@@ -23,6 +24,7 @@ const Posts = () => {
   }
   return (
     <div>
+      <Welcome />
       <CreatePost />
       <PostsList />
     </div>
