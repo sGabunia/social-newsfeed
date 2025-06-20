@@ -36,7 +36,6 @@ const Posts = () => {
   return (
     <Container size='lg' p={40}>
       <Welcome />
-
       <Grid mt='md'>
         <Grid.Col span={{ base: 12, md: 8 }}>
           <Stack gap='md'>
