@@ -8,7 +8,7 @@ type PostActionsProps = {
 };
 
 export const PostActions = ({ reactionSection, commentSection }: PostActionsProps) => {
-  const [showComments, setShowComments] = useState(true);
+  const [showComments, setShowComments] = useState(false);
 
   return (
     <Box w={'100%'}>

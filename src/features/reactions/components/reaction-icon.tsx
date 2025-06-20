@@ -1,4 +1,3 @@
-import React from 'react';
 import LikeTextIcon from '@/components/icons/like-text-icon';
 import LoveTextIcon from '@/components/icons/love-text-icon';
 import LaughTextIcon from '@/components/icons/laugh-text-icon';

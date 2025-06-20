@@ -24,18 +24,18 @@ export const Post = ({
 }: PostProps) => {
   return (
     <Paper withBorder radius='md' p='md'>
-      <Flex justify='space-between' p='md'>
+      <Flex justify='space-between'>
         <Group>
           <Avatar src={avatarUrl} alt='Jacob Warnhalter' radius='xl' />
-          <div>
+          <Group>
             <Text fz='sm'>{author}</Text>
             <TimeFormatter createdAt={createdAt} />
-          </div>
+          </Group>
         </Group>
         {deleteSection}
       </Flex>
-      <Box>
-        <Text size='sm' className={styles.root}>
+      <Box mt={12} mb={12}>
+        <Text size='sm' lineClamp={5} className={styles.root}>
           {content}
         </Text>
       </Box>

@@ -34,8 +34,12 @@ const formatTimestamp = (date: Date): string => {
   return `${diffMonths}mo`;
 };
 
-export const TimeFormatter: React.FC<TimestampProps> = ({ createdAt }) => {
+export const TimeFormatter = ({ createdAt }: TimestampProps) => {
   const date = typeof createdAt === 'string' ? new Date(createdAt) : createdAt;
 
-  return <Text size='xs' c='dimmed'>{formatTimestamp(date)}</Text>;
+  return (
+    <Text size='xs' c='dimmed'>
+      {formatTimestamp(date)}
+    </Text>
+  );
 };

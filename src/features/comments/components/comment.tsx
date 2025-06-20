@@ -18,17 +18,16 @@ export const CommentView = ({ comment }: { comment: Comment }) => {
             <Text fz='sm'>
               {comment.AuthorFirstName} {comment.AuthorLastName}
             </Text>
-            <TimeFormatter createdAt={comment.CreateTime} />
           </div>
         </Group>
-        <div>
-          {' '}
+        <Group>
+          <TimeFormatter createdAt={comment.CreateTime} />
           <DeleteComment
             commentId={comment.CommentID}
             authorId={comment.AuthorID}
             postId={comment.PostID}
           />
-        </div>
+        </Group>
       </Flex>
       <Box>
         <Text size='sm'>{comment.Content}</Text>
