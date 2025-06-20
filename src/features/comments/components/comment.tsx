@@ -6,6 +6,7 @@ import { CommentReactors } from './comment-reactors';
 import { Paper, Flex, Group, Text, Avatar, Box } from '@mantine/core';
 import { CommentActions } from './coment-action';
 import { ReactionIcons } from '@/features/posts/components/reaction-icons';
+import { TimeFormatter } from '@/components/ui/time-formatter';
 
 export const CommentView = ({ comment }: { comment: Comment }) => {
   return (
@@ -17,9 +18,7 @@ export const CommentView = ({ comment }: { comment: Comment }) => {
             <Text fz='sm'>
               {comment.AuthorFirstName} {comment.AuthorLastName}
             </Text>
-            <Text fz='xs' c='dimmed'>
-              {comment.CreateTime}
-            </Text>
+            <TimeFormatter createdAt={comment.CreateTime} />
           </div>
         </Group>
         <div>

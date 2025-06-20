@@ -1,6 +1,7 @@
 import { Avatar, Group, Paper, Text, Box, Flex } from '@mantine/core';
 import type React from 'react';
 import styles from './post.module.css';
+import { TimeFormatter } from '@/components/ui/time-formatter';
 
 type PostProps = {
   author: string;
@@ -28,9 +29,7 @@ export const Post = ({
           <Avatar src={avatarUrl} alt='Jacob Warnhalter' radius='xl' />
           <div>
             <Text fz='sm'>{author}</Text>
-            <Text fz='xs' c='dimmed'>
-              {createdAt}
-            </Text>
+            <TimeFormatter createdAt={createdAt} />
           </div>
         </Group>
         {deleteSection}
