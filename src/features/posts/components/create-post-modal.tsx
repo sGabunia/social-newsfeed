@@ -111,7 +111,9 @@ export const CreatePostModal = ({ opened, onClose }: CreatePostModalProps) => {
           <Button
             fullWidth
             color='#32B45F'
-            disabled={createPostMutation.isPending || (!content.trim() && !fileDialog.value?.item(0))}
+            disabled={
+              createPostMutation.isPending || (!content.trim() && !fileDialog.value?.item(0))
+            }
             type='submit'
             loading={createPostMutation.isPending}
           >

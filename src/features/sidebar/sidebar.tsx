@@ -1,4 +1,4 @@
-import { Paper, Text } from '@mantine/core';
+import { Avatar, Group, Paper, Text } from '@mantine/core';
 
 export const Sidebar = () => {
   return (
@@ -9,6 +9,11 @@ export const Sidebar = () => {
       </Paper>
       <Paper withBorder radius='md' p='md' mt='md'>
         <Text>Most active authors</Text>
+        <Group mt='md'>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <Avatar key={index} />
+          ))}
+        </Group>
       </Paper>
     </aside>
   );
