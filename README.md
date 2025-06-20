@@ -1,54 +1,56 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To start the project, make sure to copy the `.env.example` file to `.env`, then update the values with needed configuration.
 
-Currently, two official plugins are available:
+> ⚠️ **Note:** This project is more focused on implementing features than on detailed styling due to limited time.  
+> For UI components and styling, Mantine library was used to speed up development.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Vite** — fast build tool and dev server  
+- **React** — UI library  
+- **Axios** — HTTP client for API requests  
+- **React Query** — data fetching and caching  
+- **Zod** — schema validation and type inference  
+- **Mantine** — React component library for UI and styling
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project structure
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Project lives in src folder.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Using feature sliced folders.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+src/features/some-feature
+|
++-- api         # exported API request declarations and api hooks related to a specific feature
+|
+|
++-- components  # components scoped to a specific feature
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+It's a small project, so structure is as simple, as possible.
+Not using index files in folders for exports.
+
+## Features
+
+### 📝 Posts
+- Create and publish new posts using either text or file input
+- Simple form validation, not used any form library
+- created custom hook to handle file upload
+- Posts are submitted, the post list is invalidated and updated immediately
+- Add reactions (like 👍) to posts — updates appear instantly using optimistic updates
+- Users can only delete their own posts
+- On hover user can see post reactors
+
+### 💬 Comments
+- Same features as in posts
+- Supports infinite nesting of comments using recursive rendering
+- Threaded comment structure for better readability
+
+### 🧭 Sidebar
+- View primitive activity insights (e.g. total reactions, comment counts
+- I found no api for that, so rendered dummy data
+
+###  env variables
+- validating env variables with zod
+
+
