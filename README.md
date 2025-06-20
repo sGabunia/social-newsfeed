@@ -20,12 +20,15 @@ Project lives in src folder.
 
 Using feature sliced folders.
 
+```sh
 src/features/some-feature
 |
 +-- api         # exported API request declarations and api hooks related to a specific feature
 |
-|
-+-- components  # components scoped to a specific feature
++-- utils       # utility functions for a specific feature
+```
+Types are in top level file. But in bigger projects it can be in features folders
+
 
 It's a small project, so structure is as simple, as possible.
 Not using index files in folders for exports.
