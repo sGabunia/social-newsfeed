@@ -8,14 +8,10 @@ import AngryTextIcon from '@/components/icons/angry-text-icon';
 
 type ReactionIconProps = {
   reactionType: string;
-  size?: number | string;
   color?: string;
 };
 
-export const ReactionIcon: React.FC<ReactionIconProps> = ({ 
-  reactionType,  
-  color = '#fff' 
-}) => {
+export const ReactionIcon = ({ reactionType, color = '#fff' }: ReactionIconProps) => {
   switch (reactionType) {
     case 'LIKE':
       return <LikeTextIcon color={color} />;

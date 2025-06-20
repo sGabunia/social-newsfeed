@@ -17,7 +17,7 @@ export const Reactions = ({ postId, userReaction }: ReactionsProps) => {
   // Display either the user's current reaction or "LIKE" as default
   const displayReaction = userReaction || 'LIKE';
 
-    const getReactionEmoji = (reactionType: string) => {
+  const getReactionEmoji = (reactionType: string) => {
     switch (reactionType) {
       case 'LIKE':
         return '👍';
@@ -67,8 +67,7 @@ export const Reactions = ({ postId, userReaction }: ReactionsProps) => {
           color={userReaction ? 'blue' : '#fff'}
           variant={userReaction ? 'light' : 'transparent'}
           onClick={handleReactionClick}
-          size="md"
-
+          size='md'
         >
           <ReactionIcon reactionType={displayReaction} />
         </Button>

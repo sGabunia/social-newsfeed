@@ -1,5 +1,6 @@
 import { Avatar, Group, Paper, Text, Box, Flex } from '@mantine/core';
 import type React from 'react';
+import styles from './post.module.css';
 
 type PostProps = {
   author: string;
@@ -35,7 +36,9 @@ export const Post = ({
         {deleteSection}
       </Flex>
       <Box>
-        <Text size='sm'>{content}</Text>
+        <Text size='sm' className={styles.root}>
+          {content}
+        </Text>
       </Box>
       <Box style={{ borderBottom: '1px solid #f5f5f5' }}>{reactorsSection}</Box>
       <Flex justify='space-between' pt={10}>
