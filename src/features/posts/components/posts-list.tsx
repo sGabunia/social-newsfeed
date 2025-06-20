@@ -9,6 +9,7 @@ import { PostReactionSummary } from './post-reaction-summary';
 import { ReactionIcons } from './reaction-icons';
 import { PostActions } from './post-actions';
 import { PostSkeleton } from './post-skeleton';
+import { PostCommenters } from './post-commenters';
 
 export const PostsList = () => {
   const postsQuery = usePosts({});
@@ -56,6 +57,7 @@ export const PostsList = () => {
                   />
                 }
                 reactionIcons={<ReactionIcons reactions={post.Reactions} />}
+                commentsSummary={<PostCommenters commenters={post.TotalComments}/>}
               />
             }
             actionsSection={

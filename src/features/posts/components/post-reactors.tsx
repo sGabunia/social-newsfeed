@@ -1,14 +1,20 @@
 import { useState } from 'react';
-import { Box, Button, Group, Popover, Skeleton, Text } from '@mantine/core';
+import { Button, Flex, Group, Popover, Skeleton, Text } from '@mantine/core';
 import { usePostReactors } from '../api/get-post-reactors';
 
 type PostReactorsProps = {
   postId: number;
   reactionSummary: React.ReactNode;
   reactionIcons: React.ReactNode;
+  commentsSummary?: React.ReactNode;
 };
 
-export const PostReactors = ({ postId, reactionSummary, reactionIcons }: PostReactorsProps) => {
+export const PostReactors = ({
+  postId,
+  reactionSummary,
+  reactionIcons,
+  commentsSummary
+}: PostReactorsProps) => {
   const [opened, setOpened] = useState(false);
   const postReactorsQuery = usePostReactors({
     postId,
@@ -18,7 +24,7 @@ export const PostReactors = ({ postId, reactionSummary, reactionIcons }: PostRea
   });
 
   return (
-    <Box mt={20} mb={15}>
+    <Flex mt={20} mb={15} justify="space-between">
       <Popover opened={opened} onChange={setOpened} withinPortal>
         <Popover.Target>
           <Button
@@ -52,6 +58,7 @@ export const PostReactors = ({ postId, reactionSummary, reactionIcons }: PostRea
           )}
         </Popover.Dropdown>
       </Popover>
-    </Box>
+      {commentsSummary}
+    </Flex>
   );
 };
