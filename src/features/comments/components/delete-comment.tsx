@@ -11,14 +11,6 @@ type DeleteCommentProps = {
 
 export const DeleteComment = ({ commentId, authorId, postId }: DeleteCommentProps) => {
   const deleteCommentMutation = useDeleteComment({
-    mutationConfig: {
-      onSuccess: () => {
-        console.log(`Comment with ID ${commentId} deleted successfully.`);
-      },
-      onError: (error) => {
-        console.error(`Failed to delete comment with ID ${commentId}:`, error);
-      }
-    },
     CommentID: postId
   });
 

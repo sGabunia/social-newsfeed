@@ -4,13 +4,7 @@ import { ActionIcon, Menu, Text } from '@mantine/core';
 import DotsIcon from '@/components/icons/dots-icon';
 
 export const DeletePost = ({ postId, authorId }: { postId: number; authorId: number }) => {
-  const deletePostMutation = useDeletePost({
-    mutationConfig: {
-      onSuccess: () => {
-        console.log(`Post with ID ${postId} deleted successfully`);
-      }
-    }
-  });
+  const deletePostMutation = useDeletePost({});
   return (
     <Authorization authorId={authorId}>
       <Menu transitionProps={{ transition: 'pop' }} position='bottom-end' withinPortal offset={4}>

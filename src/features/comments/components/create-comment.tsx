@@ -9,15 +9,7 @@ type CreateCommentProps = {
 
 export const CreateComment = ({ postId }: CreateCommentProps) => {
   const createCommentMutation = useCreateComment({
-    PostID: postId,
-    mutationConfig: {
-      onSuccess: () => {
-        console.log('Comment created successfully');
-      },
-      onError: (error) => {
-        console.error('Error creating comment:', error);
-      }
-    }
+    PostID: postId
   });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,7 +19,6 @@ export const CreateComment = ({ postId }: CreateCommentProps) => {
     const content = formData.get('content');
 
     if (typeof content !== 'string' || content.trim() === '') {
-      console.error('Content is required');
       return;
     }
 

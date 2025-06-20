@@ -10,15 +10,7 @@ type CreateCommentReplyProps = {
 
 export const CreateCommentReply = ({ postId, commentId }: CreateCommentReplyProps) => {
   const createCommentReplyMutation = useCreateCommentReply({
-    PostID: postId,
-    mutationConfig: {
-      onSuccess: () => {
-        console.log('Comment created successfully');
-      },
-      onError: (error) => {
-        console.error('Error creating comment:', error);
-      }
-    }
+    PostID: postId
   });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +20,6 @@ export const CreateCommentReply = ({ postId, commentId }: CreateCommentReplyProp
     const content = formData.get('content');
 
     if (typeof content !== 'string' || content.trim() === '') {
-      console.error('Content is required');
       return;
     }
 
