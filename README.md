@@ -50,6 +50,8 @@ Not using index files in folders for exports.
 - Users can only delete their own posts
 - On hover user can see post reactors
 
+- Potential bug - I think there is a bug, when Reacting on new added post, last updater name is not returned on updated posts
+
 ### 💬 Comments
 - Same features as in posts
 - Supports infinite nesting of comments using recursive rendering
