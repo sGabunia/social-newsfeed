@@ -4,7 +4,7 @@ import { PostsList } from '@/features/posts/components/posts-list';
 import { Sidebar } from '@/features/sidebar/sidebar';
 import { useUser } from '@/lib/auth';
 import { useReactions } from '@/lib/reactions';
-import { AppShell, Container, Grid, Loader, Stack, Text } from '@mantine/core';
+import { Container, Grid, Loader, Stack, Text } from '@mantine/core';
 
 const Posts = () => {
   const user = useUser();
@@ -34,24 +34,22 @@ const Posts = () => {
   }
 
   return (
-    <AppShell padding='lg'>
-      <Container size='lg'>
-        <Welcome />
+    <Container size='lg' p={40}>
+      <Welcome />
 
-        <Grid mt='md'>
-          <Grid.Col span={{ base: 12, md: 8 }}>
-            <Stack gap='md'>
-              <CreatePost />
-              <PostsList />
-            </Stack>
-          </Grid.Col>
+      <Grid mt='md'>
+        <Grid.Col span={{ base: 12, md: 8 }}>
+          <Stack gap='md'>
+            <CreatePost />
+            <PostsList />
+          </Stack>
+        </Grid.Col>
 
-          <Grid.Col span={{ base: 12, md: 4 }} pos='sticky' top={0} h='fit-content'>
-            <Sidebar />
-          </Grid.Col>
-        </Grid>
-      </Container>
-    </AppShell>
+        <Grid.Col span={{ base: 12, md: 4 }} pos='sticky' top={0} h='fit-content'>
+          <Sidebar />
+        </Grid.Col>
+      </Grid>
+    </Container>
   );
 };
 

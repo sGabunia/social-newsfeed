@@ -43,7 +43,7 @@ export const Post = ({
       </Box>
       {postImage && (
         <Box>
-          <Image src={postImage} alt='post image' loading='lazy' />
+          <Image src={postImage} alt='post image' loading='lazy' radius={4} />
         </Box>
       )}
       <Box style={{ borderBottom: '1px solid #f5f5f5' }}>{reactorsSection}</Box>
