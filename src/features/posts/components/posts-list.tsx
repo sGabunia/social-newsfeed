@@ -4,22 +4,29 @@ import { DeletePost } from './delete-post';
 import { Reactions } from '@/features/reactions/components/reactions';
 import { PostReactors } from './post-reactors';
 import { Post } from './post';
-import { Box } from '@mantine/core';
+import { Box, Stack } from '@mantine/core';
 import { PostReactionSummary } from './post-reaction-summary';
 import { ReactionIcons } from './reaction-icons';
 import { PostActions } from './post-actions';
+import { PostSkeleton } from './post-skeleton';
 
 export const PostsList = () => {
   const postsQuery = usePosts({});
 
   if (postsQuery.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Stack>
+        {[...Array(3)].map((_, index) => (
+          <PostSkeleton key={index} />
+        ))}
+      </Stack>
+    );
   }
 
   const posts = postsQuery.data;
 
   if (posts?.length === 0) {
-    return <div>No posts found.</div>;
+    return <Box ta="center" py="xl">No posts found.</Box>;
   }
 
   if (!posts) return null;
