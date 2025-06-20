@@ -3,7 +3,7 @@ import { CreateCommentReply } from './create-comment-reply';
 import { DeleteComment } from './delete-comment';
 import { ToggleCommnetReactions } from '@/features/reactions/components/comment-reactions';
 import { CommentReactors } from './comment-reactors';
-import { Paper, Flex, Group, Text, Avatar, Box } from '@mantine/core';
+import { Paper, Flex, Group, Text, Avatar, Box, Stack } from '@mantine/core';
 import { CommentActions } from './coment-action';
 import { ReactionIcons } from '@/features/posts/components/reaction-icons';
 import { TimeFormatter } from '@/components/ui/time-formatter';
@@ -52,11 +52,11 @@ export const CommentView = ({ comment }: { comment: Comment }) => {
       />
 
       {comment.Comments && comment.Comments.length > 0 ? (
-        <Box>
+        <Stack gap={20}>
           {comment.Comments.map((childComment) => (
             <CommentView key={childComment.CommentID} comment={childComment} />
           ))}
-        </Box>
+        </Stack>
       ) : null}
     </Paper>
   );
