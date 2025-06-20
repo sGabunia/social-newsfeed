@@ -26,13 +26,17 @@ export const PostsList = () => {
   const posts = postsQuery.data;
 
   if (posts?.length === 0) {
-    return <Box ta="center" py="xl">No posts found.</Box>;
+    return (
+      <Box ta='center' py='xl'>
+        No posts found.
+      </Box>
+    );
   }
 
   if (!posts) return null;
 
   return (
-    <div>
+    <Box>
       {posts.map((post) => (
         <Box key={post.PostID} mb='md'>
           <Post
@@ -64,6 +68,6 @@ export const PostsList = () => {
           />
         </Box>
       ))}
-    </div>
+    </Box>
   );
 };

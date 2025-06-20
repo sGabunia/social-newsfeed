@@ -14,11 +14,10 @@ export const CommentView = ({ comment }: { comment: Comment }) => {
       <Flex justify='space-between' p='md'>
         <Group>
           <Avatar src={comment.AuthorAvatar} alt='Jacob Warnhalter' radius='xl' />
-          <div>
-            <Text fz='sm'>
-              {comment.AuthorFirstName} {comment.AuthorLastName}
-            </Text>
-          </div>
+
+          <Text fz='sm'>
+            {comment.AuthorFirstName} {comment.AuthorLastName}
+          </Text>
         </Group>
         <Group>
           <TimeFormatter createdAt={comment.CreateTime} />
@@ -53,11 +52,11 @@ export const CommentView = ({ comment }: { comment: Comment }) => {
       />
 
       {comment.Comments && comment.Comments.length > 0 ? (
-        <div>
+        <Box>
           {comment.Comments.map((childComment) => (
             <CommentView key={childComment.CommentID} comment={childComment} />
           ))}
-        </div>
+        </Box>
       ) : null}
     </Paper>
   );

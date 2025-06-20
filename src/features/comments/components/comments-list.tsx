@@ -1,3 +1,4 @@
+import { Box } from '@mantine/core';
 import { useComments } from '../api/get-comments';
 import { CommentView } from './comment';
 
@@ -11,7 +12,7 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
   });
 
   if (commentsQuery.isLoading) {
-    return <p>Loading comments...</p>;
+    return <p>...</p>;
   }
 
   const comments = commentsQuery.data;
@@ -22,14 +23,14 @@ export const CommentsList = ({ postId }: CommentsListProps) => {
   if (!comments) return null;
 
   return (
-    <div>
+    <Box>
       {comments.map((comment) => {
         return (
-          <div key={comment.CommentID} style={{ marginLeft: '20px' }}>
+          <Box key={comment.CommentID} style={{ marginLeft: '20px' }}>
             <CommentView comment={comment} />
-          </div>
+          </Box>
         );
       })}
-    </div>
+    </Box>
   );
 };
